@@ -1,0 +1,12 @@
+config:
+  RC:
+    url: "http://www.uitestingplayground.com/"
+    browser: "FIREFOX"
+    username: "UserAPP"
+    password: "pwd"
+  TC:
+    url: "http://www.uitestingplayground.com/"
+    browser: "CHROME"
+    username: "UserAPP"
+    password: "pwd"
+activeEnvironment: "TC"

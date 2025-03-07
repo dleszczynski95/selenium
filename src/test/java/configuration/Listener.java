@@ -1,8 +1,5 @@
 package configuration;
 
-
-import com.microsoft.playwright.Page;
-import io.qameta.allure.Attachment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestContext;
@@ -61,16 +58,12 @@ public class Listener implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         logger.info("{} Test: {}{}\n", FAILED, testName, RESET);
-        Page page = (Page) result.getAttribute("page");
-        if (BaseTest.getTestType().equals(BaseTest.TestType.FRONTEND)) saveScreenshot(page);
         updateTestResult(TestObject.TestResult.FAILED);
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
-        Page page = (Page) result.getAttribute("page");
         logger.info("{} Test: {}{}\n", IGNORED, testName, RESET);
-        if (BaseTest.getTestType().equals(BaseTest.TestType.FRONTEND)) saveScreenshot(page);
         updateTestResult(TestObject.TestResult.SKIPPED);
     }
 
@@ -93,11 +86,6 @@ public class Listener implements ITestListener {
         System.out.println(" ---------------------------------------");
         testList.forEach(System.out::println);
         System.out.println("---------------------------------------\n");
-    }
-
-    @Attachment(value = "Screenshot on Failure", type = "image/png")
-    public byte[] saveScreenshot(Page page) {
-        return page.screenshot(new Page.ScreenshotOptions().setFullPage(true));
     }
 
     private void getAllMethods(ITestContext context) throws

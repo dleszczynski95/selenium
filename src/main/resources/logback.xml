@@ -25,7 +25,7 @@
         </encoder>
     </appender>
 
-    <logger name="configuration.BaseTest" level="INFO" additivity="false">
+    <logger name="configuration.TestBase" level="INFO" additivity="false">
         <appender-ref ref="baseTestConsole"/>
     </logger>
     <logger name="configuration.Listener" level="INFO" additivity="false">
