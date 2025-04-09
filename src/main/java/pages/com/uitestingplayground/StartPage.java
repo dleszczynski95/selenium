@@ -45,7 +45,7 @@ public class StartPage extends BasePage {
         VISIBILITY("Visibility", null), SAMPLE_APP("Sample App", SampleAppPage.class),
         MOUSE_OVER("Mouse Over", null), NON_BREAKING_SPACE("Non-Breaking Space", null),
         OVERLAPPED_ELEMENT("Overlapped Element", null), SHADOW_DOM("Shadow DOM", null),
-        ALERTS("Alerts", null), FILE_UPLOAD("File Upload", null),
+        ALERTS("Alerts", null), FILE_UPLOAD("File Upload", FileUploadPage.class),
         ANIMATED_BUTTON("Animated Button", null), DISABLED_INPUT("Disabled Input", null),
         AUTO_WAIT("Auto Wait", null), RESOURCES("Resources", null);
 

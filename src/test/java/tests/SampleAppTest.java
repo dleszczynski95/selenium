@@ -41,4 +41,27 @@ public class SampleAppTest extends TestBase {
         sampleAppPage.clickLogOut();
         Assertions.assertThat(sampleAppPage.getLoginStatus()).isEqualTo(config.getLogoutMessage());
     }
+
+    @Test
+    public void wrongPassword() {
+        sampleAppPage
+                .fillUsername(config.getUsername())
+                .fillPassword("wrong")
+                .clickLogin();
+        Assertions.assertThat(sampleAppPage.getLoginStatus()).isEqualTo(config.getInvalidMessage());
+    }
+
+    @Test
+    public void inputShouldNotBeEditableAfterLogin() {
+        sampleAppPage
+                .fillUsername(config.getUsername())
+                .fillPassword(config.getPassword())
+                .clickLogin();
+        Assertions.assertThat(sampleAppPage.getLoginStatus()).isEqualTo("Welcome, " + config.getUsername() + "!");
+        sampleAppPage
+                .fillUsername("new")
+                .fillPassword("newPass");
+        Assertions.assertThat(sampleAppPage.getUsername()).isEqualTo(config.getUsername());
+        Assertions.assertThat(sampleAppPage.getPassword()).isEqualTo(config.getPassword());
+    }
 }

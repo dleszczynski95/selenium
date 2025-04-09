@@ -68,11 +68,11 @@ public class SampleAppPage extends BasePage {
 
     @Step("Getting username")
     public String getUsername() {
-        return getText(userNameInput);
+        return getTextByJS(userNameInput);
     }
 
     @Step("Getting password")
     public String getPassword() {
-        return getText(passwordInput);
+        return getTextByJS(passwordInput);
     }
 }
