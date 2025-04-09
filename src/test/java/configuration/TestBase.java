@@ -34,9 +34,7 @@ public class TestBase {
 
     @AfterMethod
     public void tearDown(ITestResult result) {
-        if (result.getStatus() == ITestResult.FAILURE) {
-            ScreenshotUtil.takeScreenshot(DriverManager.getDriver());
-        }
+        ScreenshotUtil.takeScreenshot(DriverManager.getDriver());
         DriverManager.quitDriver();
     }
 

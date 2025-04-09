@@ -13,6 +13,7 @@ public class ScreenshotUtil {
     @Attachment(value = "Screenshot on failure", type = "image/png")
     public static byte[] takeScreenshot(WebDriver driver) {
         try {
+            logger.info("Screenshot at the end taken");
             return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
         } catch (Exception e) {
             logger.error("Screenshot capture failed: " + e.getMessage());
