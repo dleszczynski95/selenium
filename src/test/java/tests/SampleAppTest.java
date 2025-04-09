@@ -1,7 +1,7 @@
 package tests;
 
 import configuration.TestBase;
-import org.testng.AssertJUnit;
+import org.assertj.core.api.Assertions;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.com.uitestingplayground.SampleAppPage;
@@ -13,13 +13,13 @@ public class SampleAppTest extends TestBase {
     @BeforeMethod
     public void goToDynamicTable() {
         sampleAppPage = new StartPage(driver).goToTileObject(StartPage.Tiles.SAMPLE_APP);
-        AssertJUnit.assertEquals("User logged out.", sampleAppPage.getLoginStatus());
+        Assertions.assertThat(sampleAppPage.getLoginStatus()).isEqualTo(config.getLogoutMessage());
     }
 
     @Test
     public void emptyLogin() {
         sampleAppPage.clickLogin();
-        AssertJUnit.assertEquals("Invalid username/password", sampleAppPage.getLoginStatus());
+        Assertions.assertThat(sampleAppPage.getLoginStatus()).isEqualTo(config.getInvalidMessage());
     }
 
     @Test
@@ -28,7 +28,7 @@ public class SampleAppTest extends TestBase {
                 .fillUsername(config.getUsername())
                 .fillPassword(config.getPassword())
                 .clickLogin();
-        AssertJUnit.assertEquals("Welcome, " + config.getUsername() + "!", sampleAppPage.getLoginStatus());
+        Assertions.assertThat(sampleAppPage.getLoginStatus()).isEqualTo("Welcome, " + config.getUsername() + "!");
     }
 
     @Test
@@ -37,8 +37,8 @@ public class SampleAppTest extends TestBase {
                 .fillUsername(config.getUsername())
                 .fillPassword(config.getPassword())
                 .clickLogin();
-        AssertJUnit.assertEquals("Welcome, " + config.getUsername() + "!", sampleAppPage.getLoginStatus());
+        Assertions.assertThat(sampleAppPage.getLoginStatus()).isEqualTo("Welcome, " + config.getUsername() + "!");
         sampleAppPage.clickLogOut();
-        AssertJUnit.assertEquals("User logged out.", sampleAppPage.getLoginStatus());
+        Assertions.assertThat(sampleAppPage.getLoginStatus()).isEqualTo(config.getLogoutMessage());
     }
 }

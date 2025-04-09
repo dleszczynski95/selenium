@@ -26,13 +26,14 @@ public class TestBase {
     @BeforeMethod
     public void setDriver() {
         initializeDriver();
+        DriverManager.setDriver(driver);
         logger.info("Going to: {}", config.getUrl());
         driver.get(config.getUrl());
     }
 
     @AfterMethod
     public void tearDown() {
-        if (driver != null) driver.quit();
+        DriverManager.quitDriver();
     }
 
     private void initializeDriver() {

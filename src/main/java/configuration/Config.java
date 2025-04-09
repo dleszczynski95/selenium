@@ -11,6 +11,8 @@ public class Config {
     private Browsers browser;
     private String username;
     private String password;
+    private String logoutMessage;
+    private String invalidMessage;
 
     public enum Browsers {
         CHROME, FIREFOX

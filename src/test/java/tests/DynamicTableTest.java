@@ -1,8 +1,8 @@
 package tests;
 
 import configuration.TestBase;
+import org.assertj.core.api.Assertions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.com.uitestingplayground.DynamicTablePage;
@@ -24,7 +24,7 @@ public class DynamicTableTest extends TestBase {
         String cpuWarning = dynamicTablePage.getCpuWarning();
         TaskManagerTable chrome = dynamicTablePage.getTaskManagerByName(name);
 
-        AssertJUnit.assertEquals(warningPrefix + chrome.getCPU(), cpuWarning);
+        Assertions.assertThat(warningPrefix + chrome.getCPU()).isEqualTo(cpuWarning);
 
         driver.navigate().refresh();
         dynamicTablePage
@@ -33,7 +33,9 @@ public class DynamicTableTest extends TestBase {
                         .not(ExpectedConditions.textToBePresentInElement(dynamicTablePage.getTaskManagerByName(name).getNameElement(), cpuWarning)));
         chrome = dynamicTablePage.getTaskManagerByName(name);
 
-        AssertJUnit.assertNotSame(warningPrefix + chrome.getCPU(), cpuWarning);
-        AssertJUnit.assertEquals(warningPrefix + chrome.getCPU(), dynamicTablePage.getCpuWarning());
+        Assertions
+                .assertThat(warningPrefix + chrome.getCPU())
+                .isNotEqualTo(cpuWarning)
+                .isEqualTo(dynamicTablePage.getCpuWarning());
     }
 }

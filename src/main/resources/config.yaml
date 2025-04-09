@@ -4,9 +4,13 @@ config:
     browser: "FIREFOX"
     username: "UserAPP"
     password: "pwd"
+    logoutMessage: "User logged out."
+    invalidMessage: "Invalid username/password"
   TC:
     url: "http://www.uitestingplayground.com/"
     browser: "CHROME"
     username: "UserAPP"
     password: "pwd"
+    logoutMessage: "User logged out."
+    invalidMessage: "Invalid username/password"
 activeEnvironment: "TC"

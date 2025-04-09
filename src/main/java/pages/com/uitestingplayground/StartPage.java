@@ -1,8 +1,8 @@
 package pages.com.uitestingplayground;
 
+import io.qameta.allure.Step;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NonNull;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,13 +20,8 @@ public class StartPage extends BasePage {
         wait.until(ExpectedConditions.numberOfElementsToBe(By.cssSelector("#overview .col-sm"), 24));
     }
 
-    public StartPage goToTile(Tiles tile) {
-        logger.info("Going to: {}", tile.getUiLabel());
-        click(driver.findElement(By.xpath("//a[text()='" + tile.getUiLabel() + "']")));
-        return this;
-    }
-
     @SuppressWarnings("unchecked")
+    @Step("Go to {0}")
     public <T> T goToTileObject(Tiles tile) {
         logger.info("Going to: {}", tile.getUiLabel());
         click(driver.findElement(By.xpath("//a[text()='" + tile.getUiLabel() + "']")));
@@ -37,7 +32,6 @@ public class StartPage extends BasePage {
             throw new RuntimeException("Can't create instance: " + tile.getClazz().getName(), e);
         }
     }
-
 
     @AllArgsConstructor
     @Getter

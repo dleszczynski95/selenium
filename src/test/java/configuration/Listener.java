@@ -1,5 +1,9 @@
 package configuration;
 
+import io.qameta.allure.Attachment;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestContext;
@@ -57,6 +61,7 @@ public class Listener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
+        takeScreenshot();
         logger.info("{} Test: {}{}\n", FAILED, testName, RESET);
         updateTestResult(TestObject.TestResult.FAILED);
     }
@@ -80,6 +85,18 @@ public class Listener implements ITestListener {
     public void onFinish(ITestContext context) {
         testList.forEach(System.out::println);
     }
+
+    @Attachment(value = "Screenshot on failure", type = "image/png")
+    private byte[] takeScreenshot() {
+        try {
+            WebDriver driver = DriverManager.getDriver();
+            return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+        } catch (Exception e) {
+            logger.error("Screenshot failed: ", e);
+            return new byte[0];
+        }
+    }
+
 
     private void printTestsStatus() {
         logger.info("           Test Progress:");
