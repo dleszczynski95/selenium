@@ -1,4 +1,4 @@
-package tests;
+package tests.com.uitestingplayground;
 
 import configuration.TestBase;
 import org.assertj.core.api.Assertions;
