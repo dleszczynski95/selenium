@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="DynamicTableTestSuite">
+    <test name="DynamicTableTests">
+        <classes>
+            <class name="tests.com.uitestingplayground.DynamicTableTest"/>
+        </classes>
+    </test>
+</suite>
