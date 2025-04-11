@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="BackendSuite">
+    <test name="Auth Test">
+        <classes>
+            <class name="tests.org.httpbin.AuthTest"/>
+        </classes>
+    </test>
+    <test name="Http Methods Test">
+        <classes>
+            <class name="tests.org.httpbin.HttpMethodsTest"/>
+        </classes>
+    </test>
+</suite>

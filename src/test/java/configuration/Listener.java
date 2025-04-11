@@ -61,7 +61,8 @@ public class Listener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        saveScreenshot(((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.BYTES));
+        WebDriver driver = DriverManager.getDriver();
+        if (driver != null) saveScreenshot(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
         logger.info("{} Test: {}{}\n", FAILED, testName, RESET);
         updateTestResult(TestObject.TestResult.FAILED);
     }
@@ -90,18 +91,6 @@ public class Listener implements ITestListener {
     public byte[] saveScreenshot(byte[] screenshot) {
         return screenshot;
     }
-
-//    @Attachment(value = "Screenshot on failure", type = "image/png")
-//    private byte[] saveScreenshot() {
-//        try {
-//            WebDriver driver = DriverManager.getDriver();
-//            logger.info("Screenshot saved");
-//            return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-//        } catch (Exception e) {
-//            logger.error("Screenshot failed: ", e);
-//            return new byte[0];
-//        }
-//    }
 
     private void printTestsStatus() {
         logger.info("           Test Progress:");

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="SampleAppTestSuite">
+    <test name="Sample App Test">
+        <classes>
+            <class name="tests.com.uitestingplayground.SampleAppTest"/>
+        </classes>
+    </test>
+</suite>
